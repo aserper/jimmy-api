@@ -5,7 +5,7 @@ Unofficial Python client for [chatjimmy.ai](https://chatjimmy.ai) — an extreme
 ## Installation
 
 ```bash
-pip install git+https://github.com/amitbend/jimmy-api.git
+pip install git+https://github.com/aserper/jimmy-api.git
 ```
 
 ## Quick Start

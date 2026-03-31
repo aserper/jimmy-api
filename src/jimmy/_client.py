@@ -7,6 +7,7 @@ from jimmy._constants import (
     DEFAULT_MODEL,
     DEFAULT_TOP_K,
     MAX_ATTACHMENT_SIZE,
+    USER_AGENT,
 )
 from jimmy._conversation import AsyncConversation, Conversation
 from jimmy._exceptions import APIError, AttachmentTooLargeError
@@ -71,7 +72,10 @@ class Jimmy:
         self._model = model
         self._system_prompt = system_prompt
         self._top_k = top_k
-        self._client = httpx_client or httpx.Client(timeout=timeout)
+        self._client = httpx_client or httpx.Client(
+            timeout=timeout,
+            headers={"User-Agent": USER_AGENT},
+        )
         self._owns_client = httpx_client is None
 
     def _resolve(self, model: str | None, system_prompt: str | None, top_k: int | None) -> tuple[str, str, int]:
@@ -207,7 +211,10 @@ class AsyncJimmy:
         self._model = model
         self._system_prompt = system_prompt
         self._top_k = top_k
-        self._client = httpx_client or httpx.AsyncClient(timeout=timeout)
+        self._client = httpx_client or httpx.AsyncClient(
+            timeout=timeout,
+            headers={"User-Agent": USER_AGENT},
+        )
         self._owns_client = httpx_client is None
 
     def _resolve(self, model: str | None, system_prompt: str | None, top_k: int | None) -> tuple[str, str, int]:
